@@ -1,9 +1,11 @@
 import configparser
 import pytest
+import os
 
 
 class TestSeleniumMainPage:
     config = configparser.ConfigParser()
+    #path = '/'.join((os.path.abspath(__file__).replace('\\', '/')).split('/')[:-1])
     config.read('config.ini')
     link = config['URLs']['selenium_test_page']
 

@@ -1,11 +1,12 @@
 import pytest
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture(scope='class')
 def browser():
     print('\nstart browser for test..')
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome(ChromeDriverManager().install())
     yield browser
 
     print('\nquit browser..')
