@@ -1,6 +1,5 @@
 import pytest
 import configparser
-import time
 
 from pages.product_page import ProductPage
 
@@ -15,6 +14,7 @@ class TestProductPage:
         product_page = ProductPage(browser)
         product_page.open(url=self.url)
         product_page.click_add_to_basket_button()
-        time.sleep(5)
         product_page.solve_quiz_and_get_code()
 
+        assert product_page.get_added_to_basket_product_name().text == product_page.get_product_name_value()
+        assert product_page.get_added_to_basket_product_price().text == product_page.get_product_price_value()

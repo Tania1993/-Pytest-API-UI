@@ -1,5 +1,7 @@
 import configparser
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class BasePage:
@@ -20,4 +22,12 @@ class BasePage:
         except NoSuchElementException:
             return NoSuchElementException
         return True
+
+    def wait_until_element_present(self, by, value):
+        try:
+            wait = WebDriverWait(self.browser, 10)
+            element = wait.until(EC.visibility_of_element_located((by, value)))
+            return element
+        except NoSuchElementException:
+            return NoSuchElementException
 
