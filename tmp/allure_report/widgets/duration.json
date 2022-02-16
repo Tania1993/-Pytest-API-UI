@@ -1,0 +1,11 @@
+[ {
+  "uid" : "806e1129ca9e80df",
+  "name" : "test_add_product_to_basket",
+  "time" : {
+    "start" : 1644997973021,
+    "stop" : 1644997982177,
+    "duration" : 9156
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

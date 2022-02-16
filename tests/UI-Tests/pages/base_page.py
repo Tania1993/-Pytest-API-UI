@@ -25,8 +25,7 @@ class BasePage:
 
     def wait_until_element_present(self, by, value):
         try:
-            wait = WebDriverWait(self.browser, 10)
-            element = wait.until(EC.visibility_of_element_located((by, value)))
+            element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located((by, value)))
             return element
         except NoSuchElementException:
             return NoSuchElementException

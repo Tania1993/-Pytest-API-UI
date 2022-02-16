@@ -1,5 +1,5 @@
-./.pytest_cache
-./.idea
-./venv
+/.pytest_cache
+/.idea
+/venv
 geckodriver.log
-./tmp
+/tmp

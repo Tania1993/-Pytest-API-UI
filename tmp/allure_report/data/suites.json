@@ -1,0 +1,29 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "tests.UI-Tests",
+    "children" : [ {
+      "name" : "ProductPageTests",
+      "children" : [ {
+        "name" : "TestProductPage",
+        "children" : [ {
+          "name" : "test_add_product_to_basket",
+          "uid" : "806e1129ca9e80df",
+          "parentUid" : "17071db9a07c331fedd9ebf9393f2877",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644997973021,
+            "stop" : 1644997982177,
+            "duration" : 9156
+          },
+          "flaky" : true,
+          "parameters" : [ ]
+        } ],
+        "uid" : "17071db9a07c331fedd9ebf9393f2877"
+      } ],
+      "uid" : "4806619df6a888d8dbf04aee87d0f6c1"
+    } ],
+    "uid" : "a880c3ed9624c6c4c51a56c36b6b8b12"
+  } ]
+}

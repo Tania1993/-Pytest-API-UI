@@ -1,0 +1,17 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "test_add_product_to_basket",
+    "uid" : "806e1129ca9e80df",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1644997973021,
+      "stop" : 1644997982177,
+      "duration" : 9156
+    },
+    "flaky" : true,
+    "parameters" : [ ]
+  } ]
+}

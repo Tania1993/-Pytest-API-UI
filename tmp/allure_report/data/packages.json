@@ -1,0 +1,21 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "tests.UI-Tests.ProductPageTests",
+    "children" : [ {
+      "name" : "test_add_product_to_basket",
+      "uid" : "806e1129ca9e80df",
+      "parentUid" : "ed1225ad79c8c40bc7b8a0f06d0a57c8",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644997973021,
+        "stop" : 1644997982177,
+        "duration" : 9156
+      },
+      "flaky" : true,
+      "parameters" : [ ]
+    } ],
+    "uid" : "tests.UI-Tests.ProductPageTests"
+  } ]
+}
