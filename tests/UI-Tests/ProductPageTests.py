@@ -4,6 +4,7 @@ import pytest
 import configparser
 
 from pages.product_page import ProductPage
+from pages.login_page import LoginPage
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -11,19 +12,19 @@ config.read('config.ini')
 
 class TestProductPage:
     product_page_with_bug = [f"{config['URLs']['product_page_with_bug']}?promo=offer{i}" for i in range(0, 10)]
+    url = config['URLs']['product_page']
 
     @pytest.mark.UI
     def test_add_product_to_basket(self, browser):
-        url = config['URLs']['product_page']
         product_page = ProductPage(browser)
-        product_page.open(url=url)
+        product_page.open(url=self.url)
         product_page.click_add_to_basket_button()
         product_page.solve_quiz_and_get_code()
 
         assert product_page.get_added_to_basket_product_name().text == product_page.get_product_name_value()
         assert product_page.get_added_to_basket_product_price().text == product_page.get_product_price_value()
 
-    @pytest.mark.UI
+    @pytest.mark.UI2
     @pytest.mark.parametrize('urls', product_page_with_bug)
     @pytest.mark.xfail(reason='bugged link')
     def test_add_product_to_basket_with_bug(self, browser, urls):
@@ -31,4 +32,16 @@ class TestProductPage:
         product_page.open(url=urls)
         product_page.click_add_to_basket_button()
 
-        #time.sleep(2)
+    @pytest.mark.UI
+    def test_guest_user_should_see_login_link(self, browser):
+        product_page = ProductPage(browser)
+        product_page.open(self.url)
+        assert product_page.login_link_should_be_present(), 'Login link is not displayed'
+
+    @pytest.mark.UI
+    def test_guest_can_go_to_login_page_from_product_page(self, browser):
+        product_page = ProductPage(browser)
+        product_page.open(self.url)
+        product_page.click_login_link()
+        login_page = LoginPage(browser)
+        assert login_page.page_should_be_opened('login'), 'Login page is not opened'
