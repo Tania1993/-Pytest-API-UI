@@ -13,6 +13,7 @@ class BasePage:
     LOGIN_LINK_CSS_SELECTOR = (By.CSS_SELECTOR, '#login_link')
     BASKET_LINK = (By.CSS_SELECTOR, '.basket-mini .btn-group > a')
     SEARCH_BUTTON = (By.CSS_SELECTOR, 'button.favorite')
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
     def __init__(self, browser):
         self.browser = browser
@@ -61,3 +62,7 @@ class BasePage:
 
     def search_button_should_be_present(self):
         return self.is_element_present(*self.SEARCH_BUTTON)
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*self.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"

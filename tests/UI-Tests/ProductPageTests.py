@@ -1,5 +1,4 @@
-import time
-
+from datetime import datetime
 import pytest
 import configparser
 
@@ -10,14 +9,18 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 
+@pytest.mark.UI
 class TestProductPage:
     product_page_with_bug = [f"{config['URLs']['product_page_with_bug']}?promo=offer{i}" for i in range(0, 10)]
     url = config['URLs']['product_page']
 
-    @pytest.mark.UI
     def test_add_product_to_basket(self, browser):
         product_page = ProductPage(browser)
         product_page.open(url=self.url)
+        product_page.click_login_link()
+        login_page = LoginPage(browser)
+        login_page.register(email=f'test_user_{str(datetime.today().strftime("%Y-%m-%d-%H%M%S"))}@fakemail.org', password='GoodPassword123456')
+        product_page.click_product_image()
         product_page.click_add_to_basket_button()
         product_page.solve_quiz_and_get_code()
 
@@ -32,13 +35,11 @@ class TestProductPage:
         product_page.open(url=urls)
         product_page.click_add_to_basket_button()
 
-    @pytest.mark.UI
     def test_guest_user_should_see_login_link(self, browser):
         product_page = ProductPage(browser)
         product_page.open(self.url)
         assert product_page.login_link_should_be_present(), 'Login link is not displayed'
 
-    @pytest.mark.UI
     def test_guest_can_go_to_login_page_from_product_page(self, browser):
         product_page = ProductPage(browser)
         product_page.open(self.url)

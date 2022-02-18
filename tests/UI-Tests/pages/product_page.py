@@ -12,6 +12,7 @@ class ProductPage(BasePage):
     PRODUCT_PRICE = (By.XPATH, "//p[@class='price_color']")
     PRODUCT_NAME_MESSAGE = (By.XPATH, "//div[@id='messages']/div[1]/div/strong")
     BASKET_PRICE_MESSAGE = (By.XPATH, "//div[@id='messages']/div[3]/div/p/strong")
+    PRODUCT_IMAGE = (By.XPATH, "//div[@class='image_container']/a/img")
 
     def get_product_price_value(self):
         return self.browser.find_element(*self.PRODUCT_PRICE).text
@@ -23,19 +24,24 @@ class ProductPage(BasePage):
         self.browser.find_element(*self.ADD_TO_BASKET_BUTTON).click()
         return self.browser
 
+    def click_product_image(self):
+        self.browser.find_element(*self.PRODUCT_IMAGE).click()
+
     def solve_quiz_and_get_code(self):
-        alert = self.browser.switch_to.alert
-        x = alert.text.split(" ")[2]
-        answer = str(math.log(abs((12 * math.sin(float(x))))))
-        alert.send_keys(answer)
-        time.sleep(1)
-        alert.accept()
-        time.sleep(1)
         try:
+            alert = self.browser.switch_to.alert
+            x = alert.text.split(" ")[2]
+            answer = str(math.log(abs((12 * math.sin(float(x))))))
+            alert.send_keys(answer)
+            time.sleep(1)
+            alert.accept()
+            time.sleep(1)
+
             alert = self.browser.switch_to.alert
             alert_text = alert.text
             print(f"Your code: {alert_text}")
             alert.accept()
+
         except NoAlertPresentException:
             print("No second alert presented")
 
